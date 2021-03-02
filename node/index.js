@@ -11,8 +11,8 @@ app.get('/', (req, res) => {
   }
   const mysql = require('mysql')
   const connection = mysql.createConnection(config)
-  const sql = `INSERT INTO people(name) values('Teste')`;
-  connection.query(sql)
+  connection.query(`CREATE TABLE IF NOT EXISTS people(id int not null auto_increment, name varchar(255), primary key(id))`)
+  connection.query(`INSERT INTO people(name) values('Teste')`)
 
   var resposta = '<h1>Full Cycle Rocks!</h1>';
   connection.query(`SELECT name FROM people`, function(error, result) {
